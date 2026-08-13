@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiAuthRouteImport } from './routes/api/auth'
 import { Route as ApiCategoriesRouteImport } from './routes/api/categories'
 import { Route as ApiEventsRouteImport } from './routes/api/events'
@@ -19,6 +21,16 @@ import { Route as EventsIdRouteImport } from './routes/events/$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthRoute = ApiAuthRouteImport.update({
@@ -49,62 +61,76 @@ const EventsIdRoute = EventsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/login': typeof AdminLoginRoute
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
   '/events/$id': typeof EventsIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/events/': typeof EventsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/login': typeof AdminLoginRoute
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
   '/events/$id': typeof EventsIdRoute
+  '/admin': typeof AdminIndexRoute
   '/events': typeof EventsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/login': typeof AdminLoginRoute
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
   '/events/$id': typeof EventsIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/events/': typeof EventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin/login'
     | '/api/auth'
     | '/api/categories'
     | '/api/events'
     | '/events/$id'
+    | '/admin/'
     | '/events/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin/login'
     | '/api/auth'
     | '/api/categories'
     | '/api/events'
     | '/events/$id'
+    | '/admin'
     | '/events'
   id:
     | '__root__'
     | '/'
+    | '/admin/login'
     | '/api/auth'
     | '/api/categories'
     | '/api/events'
     | '/events/$id'
+    | '/admin/'
     | '/events/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   ApiAuthRoute: typeof ApiAuthRoute
   ApiCategoriesRoute: typeof ApiCategoriesRoute
   ApiEventsRoute: typeof ApiEventsRoute
   EventsIdRoute: typeof EventsIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   EventsIndexRoute: typeof EventsIndexRoute
 }
 
@@ -115,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth': {
@@ -157,10 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminLoginRoute: AdminLoginRoute,
   ApiAuthRoute: ApiAuthRoute,
   ApiCategoriesRoute: ApiCategoriesRoute,
   ApiEventsRoute: ApiEventsRoute,
   EventsIdRoute: EventsIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
   EventsIndexRoute: EventsIndexRoute,
 }
 export const routeTree = rootRouteImport
