@@ -10,33 +10,206 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as ApiAuthRouteImport } from './routes/api/auth'
+import { Route as ApiCategoriesRouteImport } from './routes/api/categories'
+import { Route as ApiEventsRouteImport } from './routes/api/events'
+import { Route as EventsIndexRouteImport } from './routes/events/index'
+import { Route as EventsIdRouteImport } from './routes/events/$id'
+import { Route as AdminCategoriesIndexRouteImport } from './routes/admin/categories/index'
+import { Route as AdminCategoriesIdRouteImport } from './routes/admin/categories/$id'
+import { Route as AdminEventsIndexRouteImport } from './routes/admin/events/index'
+import { Route as AdminEventsCreateRouteImport } from './routes/admin/events/create'
+import { Route as AdminEventsIdEditRouteImport } from './routes/admin/events/$id/edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRoute = ApiAuthRouteImport.update({
+  id: '/api/auth',
+  path: '/api/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCategoriesRoute = ApiCategoriesRouteImport.update({
+  id: '/api/categories',
+  path: '/api/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiEventsRoute = ApiEventsRouteImport.update({
+  id: '/api/events',
+  path: '/api/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIdRoute = EventsIdRouteImport.update({
+  id: '/events/$id',
+  path: '/events/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCategoriesIndexRoute = AdminCategoriesIndexRouteImport.update({
+  id: '/admin/categories/',
+  path: '/admin/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCategoriesIdRoute = AdminCategoriesIdRouteImport.update({
+  id: '/admin/categories/$id',
+  path: '/admin/categories/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEventsIndexRoute = AdminEventsIndexRouteImport.update({
+  id: '/admin/events/',
+  path: '/admin/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEventsCreateRoute = AdminEventsCreateRouteImport.update({
+  id: '/admin/events/create',
+  path: '/admin/events/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEventsIdEditRoute = AdminEventsIdEditRouteImport.update({
+  id: '/admin/events/$id/edit',
+  path: '/admin/events/$id/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/categories': typeof ApiCategoriesRoute
+  '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
+  '/admin/': typeof AdminIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/events/create': typeof AdminEventsCreateRoute
+  '/admin/categories/': typeof AdminCategoriesIndexRoute
+  '/admin/events/': typeof AdminEventsIndexRoute
+  '/admin/events/$id/edit': typeof AdminEventsIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/categories': typeof ApiCategoriesRoute
+  '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
+  '/admin': typeof AdminIndexRoute
+  '/events': typeof EventsIndexRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/events/create': typeof AdminEventsCreateRoute
+  '/admin/categories': typeof AdminCategoriesIndexRoute
+  '/admin/events': typeof AdminEventsIndexRoute
+  '/admin/events/$id/edit': typeof AdminEventsIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/auth': typeof ApiAuthRoute
+  '/api/categories': typeof ApiCategoriesRoute
+  '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
+  '/admin/': typeof AdminIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/events/create': typeof AdminEventsCreateRoute
+  '/admin/categories/': typeof AdminCategoriesIndexRoute
+  '/admin/events/': typeof AdminEventsIndexRoute
+  '/admin/events/$id/edit': typeof AdminEventsIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/api/auth'
+    | '/api/categories'
+    | '/api/events'
+    | '/events/$id'
+    | '/admin/'
+    | '/events/'
+    | '/admin/categories/$id'
+    | '/admin/events/create'
+    | '/admin/categories/'
+    | '/admin/events/'
+    | '/admin/events/$id/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/api/auth'
+    | '/api/categories'
+    | '/api/events'
+    | '/events/$id'
+    | '/admin'
+    | '/events'
+    | '/admin/categories/$id'
+    | '/admin/events/create'
+    | '/admin/categories'
+    | '/admin/events'
+    | '/admin/events/$id/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/api/auth'
+    | '/api/categories'
+    | '/api/events'
+    | '/events/$id'
+    | '/admin/'
+    | '/events/'
+    | '/admin/categories/$id'
+    | '/admin/events/create'
+    | '/admin/categories/'
+    | '/admin/events/'
+    | '/admin/events/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  ApiAuthRoute: typeof ApiAuthRoute
+  ApiCategoriesRoute: typeof ApiCategoriesRoute
+  ApiEventsRoute: typeof ApiEventsRoute
+  EventsIdRoute: typeof EventsIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
+  AdminCategoriesIdRoute: typeof AdminCategoriesIdRoute
+  AdminEventsCreateRoute: typeof AdminEventsCreateRoute
+  AdminCategoriesIndexRoute: typeof AdminCategoriesIndexRoute
+  AdminEventsIndexRoute: typeof AdminEventsIndexRoute
+  AdminEventsIdEditRoute: typeof AdminEventsIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +221,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth': {
+      id: '/api/auth'
+      path: '/api/auth'
+      fullPath: '/api/auth'
+      preLoaderRoute: typeof ApiAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/categories': {
+      id: '/api/categories'
+      path: '/api/categories'
+      fullPath: '/api/categories'
+      preLoaderRoute: typeof ApiCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/events': {
+      id: '/api/events'
+      path: '/api/events'
+      fullPath: '/api/events'
+      preLoaderRoute: typeof ApiEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/$id': {
+      id: '/events/$id'
+      path: '/events/$id'
+      fullPath: '/events/$id'
+      preLoaderRoute: typeof EventsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/categories/': {
+      id: '/admin/categories/'
+      path: '/admin/categories'
+      fullPath: '/admin/categories/'
+      preLoaderRoute: typeof AdminCategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/categories/$id': {
+      id: '/admin/categories/$id'
+      path: '/admin/categories/$id'
+      fullPath: '/admin/categories/$id'
+      preLoaderRoute: typeof AdminCategoriesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/events/': {
+      id: '/admin/events/'
+      path: '/admin/events'
+      fullPath: '/admin/events/'
+      preLoaderRoute: typeof AdminEventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/events/create': {
+      id: '/admin/events/create'
+      path: '/admin/events/create'
+      fullPath: '/admin/events/create'
+      preLoaderRoute: typeof AdminEventsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/events/$id/edit': {
+      id: '/admin/events/$id/edit'
+      path: '/admin/events/$id/edit'
+      fullPath: '/admin/events/$id/edit'
+      preLoaderRoute: typeof AdminEventsIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  ApiAuthRoute: ApiAuthRoute,
+  ApiCategoriesRoute: ApiCategoriesRoute,
+  ApiEventsRoute: ApiEventsRoute,
+  EventsIdRoute: EventsIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
+  AdminCategoriesIdRoute: AdminCategoriesIdRoute,
+  AdminEventsCreateRoute: AdminEventsCreateRoute,
+  AdminCategoriesIndexRoute: AdminCategoriesIndexRoute,
+  AdminEventsIndexRoute: AdminEventsIndexRoute,
+  AdminEventsIdEditRoute: AdminEventsIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
