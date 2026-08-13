@@ -14,6 +14,7 @@ import { Route as ApiAuthRouteImport } from './routes/api/auth'
 import { Route as ApiCategoriesRouteImport } from './routes/api/categories'
 import { Route as ApiEventsRouteImport } from './routes/api/events'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
+import { Route as EventsIdRouteImport } from './routes/events/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,12 +41,18 @@ const EventsIndexRoute = EventsIndexRouteImport.update({
   path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsIdRoute = EventsIdRouteImport.update({
+  id: '/events/$id',
+  path: '/events/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
   '/events/': typeof EventsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
   '/events': typeof EventsIndexRoute
 }
 export interface FileRoutesById {
@@ -61,19 +69,33 @@ export interface FileRoutesById {
   '/api/auth': typeof ApiAuthRoute
   '/api/categories': typeof ApiCategoriesRoute
   '/api/events': typeof ApiEventsRoute
+  '/events/$id': typeof EventsIdRoute
   '/events/': typeof EventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/auth' | '/api/categories' | '/api/events' | '/events/'
+  fullPaths:
+    | '/'
+    | '/api/auth'
+    | '/api/categories'
+    | '/api/events'
+    | '/events/$id'
+    | '/events/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/auth' | '/api/categories' | '/api/events' | '/events'
+  to:
+    | '/'
+    | '/api/auth'
+    | '/api/categories'
+    | '/api/events'
+    | '/events/$id'
+    | '/events'
   id:
     | '__root__'
     | '/'
     | '/api/auth'
     | '/api/categories'
     | '/api/events'
+    | '/events/$id'
     | '/events/'
   fileRoutesById: FileRoutesById
 }
@@ -82,6 +104,7 @@ export interface RootRouteChildren {
   ApiAuthRoute: typeof ApiAuthRoute
   ApiCategoriesRoute: typeof ApiCategoriesRoute
   ApiEventsRoute: typeof ApiEventsRoute
+  EventsIdRoute: typeof EventsIdRoute
   EventsIndexRoute: typeof EventsIndexRoute
 }
 
@@ -122,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/$id': {
+      id: '/events/$id'
+      path: '/events/$id'
+      fullPath: '/events/$id'
+      preLoaderRoute: typeof EventsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -130,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAuthRoute: ApiAuthRoute,
   ApiCategoriesRoute: ApiCategoriesRoute,
   ApiEventsRoute: ApiEventsRoute,
+  EventsIdRoute: EventsIdRoute,
   EventsIndexRoute: EventsIndexRoute,
 }
 export const routeTree = rootRouteImport
