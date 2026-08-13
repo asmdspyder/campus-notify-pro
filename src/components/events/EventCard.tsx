@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { formatDate, formatTimeRange, getRegistrationState } from "@/lib/event-utils";
 import type { CampusEvent, Category } from "@/types";
 
-export function EventCard({ event, category }: { event: CampusEvent; category?: Category }) {
+export function EventCard({ event, category }: { event: CampusEvent; category?: Category | undefined }) {
   const registration = getRegistrationState(event);
 
   return (
